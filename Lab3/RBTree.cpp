@@ -57,7 +57,7 @@ private:
   void rbInsertFixup(TNode *z) {
     while (z->p->color == RED) {
       if (z->p == z->p->p->left) {
-        TNode *y = z->p->p->right; // 叔叔节点
+        TNode *y = z->p->p->right; // 右叔叔节点
 
         // Case 1
         if (y->color == RED) {
@@ -73,19 +73,18 @@ private:
             z = z->p;
             leftRotate(z);
           }
-          // Case 3 (注意：Case 2 处理完后通常会流转到 Case 3，或者直接进入 Case
-          // 3)
+          // Case 3
           cout << "3 "; // 输出 Case 3
           z->p->color = BLACK;
           z->p->p->color = RED;
           rightRotate(z->p->p);
         }
-      } else { // 对称情况 (else part omitted in image, mapped to 4, 5, 6)
-        TNode *y = z->p->p->left; // Uncle
+      } else {                    // 对称情况
+        TNode *y = z->p->p->left; // 左叔叔节点
 
         // Case 4
         if (y->color == RED) {
-          cout << "4 ";
+          cout << "4 "; // 输出 Case 4
           z->p->color = BLACK;
           y->color = BLACK;
           z->p->p->color = RED;
@@ -93,12 +92,12 @@ private:
         } else {
           // Case 5
           if (z == z->p->left) {
-            cout << "5 ";
+            cout << "5 "; // 输出 Case 5
             z = z->p;
             rightRotate(z);
           }
           // Case 6
-          cout << "6 ";
+          cout << "6 "; // 输出 Case 6
           z->p->color = BLACK;
           z->p->p->color = RED;
           leftRotate(z->p->p);
