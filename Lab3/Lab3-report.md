@@ -281,6 +281,38 @@ int main() {
 }
 ```
 
+```cpp
+
+  // =================内存池相关变量与函数 =================
+  const int BLOCK_SIZE = 100;   // 每个内存块能存多少个节点
+  vector<TNode *> memoryBlocks; // 存储所有申请的大内存块
+  int freeIndex;                // 当前内存块用到第几个位置了
+
+  // 从内存池分配节点的辅助函数
+  TNode *allocateNode(int key) {
+    // 如果当前块用完了（或者还没申请过块），就申请一个新的大块
+    if (freeIndex >= BLOCK_SIZE || memoryBlocks.empty()) {
+      TNode *newBlock = new TNode[BLOCK_SIZE];
+      memoryBlocks.push_back(newBlock);
+      freeIndex = 0; // 重置游标
+    }
+
+    // 从当前块中拿出一个空闲节点
+    TNode *node = &memoryBlocks.back()[freeIndex++];
+
+    // 预先初始化基础数据
+    node->key = key;
+    node->color = RED; // 默认为红色
+    node->left = nil;
+    node->right = nil;
+    node->p = nil;
+
+    return node;
+  }
+```
+
+
+
 ## 5. 算法正确性测试
 
 ### 测试数据
