@@ -225,8 +225,6 @@ public:
   }
 
 private:
-  // 查找重叠区间的辅助函数（返回第一个找到的）
-
   // 查找所有重叠区间的辅助函数
   void searchAllOverlapsHelper(IntervalNode *x, Interval i,
                                vector<Interval> &result) {
