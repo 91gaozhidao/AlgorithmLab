@@ -217,11 +217,6 @@ public:
     insertFixup(z);
   }
 
-  // 查找与给定区间重叠的区间
-  IntervalNode *searchOverlap(Interval i) {
-    return searchOverlapHelper(root, i);
-  }
-
   // 查找所有与给定区间重叠的区间
   vector<Interval> searchAllOverlaps(Interval i) {
     vector<Interval> result;
@@ -231,17 +226,6 @@ public:
 
 private:
   // 查找重叠区间的辅助函数（返回第一个找到的）
-  IntervalNode *searchOverlapHelper(IntervalNode *x, Interval i) {
-    while (x != NIL && !i.overlaps(x->interval)) {
-      // 如果左子树的max值大于等于查询区间的下界，则左子树可能包含重叠区间
-      if (x->left != NIL && x->left->max >= i.low) {
-        x = x->left;
-      } else {
-        x = x->right;
-      }
-    }
-    return x;
-  }
 
   // 查找所有重叠区间的辅助函数
   void searchAllOverlapsHelper(IntervalNode *x, Interval i,
