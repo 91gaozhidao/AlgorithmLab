@@ -280,11 +280,11 @@ public:
     int n;
     file >> n;
 
-    cout << "开始插入 " << n << " 个区间..." << endl;
+    // cout << "开始插入 " << n << " 个区间..." << endl;
     for (int i = 0; i < n; i++) {
       int low, high;
       file >> low >> high;
-      cout << "插入区间 [" << low << ", " << high << "]" << endl;
+      // cout << "插入区间 [" << low << ", " << high << "]" << endl;
       insert(Interval(low, high));
     }
 
